@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const api = axios.create({ baseURL: 'https://todo-list-production-6f55.up.railway.app/api' });
+const api = axios.create({ baseURL: 'https://dmadhumitha25.pythonanywhere.com/api' });
 
 api.interceptors.request.use(cfg => {
   const token = localStorage.getItem('access');
@@ -15,7 +15,7 @@ api.interceptors.response.use(
       const refresh = localStorage.getItem('refresh');
       if (refresh) {
         try {
-          const { data } = await axios.post('https://todo-list-production-6f55.up.railway.app/api/token/refresh/', { refresh });
+          const { data } = await axios.post('https://dmadhumitha25.pythonanywhere.com/api/token/refresh/', { refresh });
           localStorage.setItem('access', data.access);
           err.config.headers.Authorization = `Bearer ${data.access}`;
           return axios(err.config);
